@@ -45,3 +45,4 @@ class SearchCommonElements:
 
 
 obj1 = StringClass("12345")
+obj2 = PairsPossible("123432")
