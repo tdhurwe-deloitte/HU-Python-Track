@@ -5,7 +5,7 @@ def pascal_triangle(num):
     for line in range(0, num):
         for i in range(0, line + 1):
             print(binomial_coeff(line, i), " ", end="")
-        print("0  " * (num-line))
+        print("0  " * (num-line - 1))
         print()
 
 
