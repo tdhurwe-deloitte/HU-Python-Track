@@ -1,7 +1,7 @@
 def decorator_function(execute_twice):
     def print_twice(num1, num2):
-        print(num1*num2)
-        return execute_twice(num1, num2)
+        execute_twice(num1, num2)
+        execute_twice(num1, num2)
     return print_twice
 
 
