@@ -21,8 +21,13 @@ def calculator():
             print(f"{val1} - {val2} = {val1 - val2}")
     except Formula_error:
         print("Invalid input format")
+
+    except ValueError as e:
+        print(e)
+
     except:
         print("Invalid inputs")
+
     finally:
         choice = input("Enter y to continue and n to exit : ")
         if choice == "y":
