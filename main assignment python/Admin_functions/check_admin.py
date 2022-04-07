@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 
 def check_admin(uname, passwd):
-    path = join(dirname(__file__), "admin.json")
+    path = join(dirname(__file__), "../resources/admin.json")
 
     with open(path, "r") as file:
         data = json.load(file)

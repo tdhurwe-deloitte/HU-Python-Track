@@ -3,6 +3,7 @@ from os.path import join, dirname
 
 
 def add_movie_page():
+    print("\n", "*" * 20, " Welcome Admin", "*" * 20)
     ls = [
         "Title : ",
         "Genre : ",
@@ -26,11 +27,15 @@ def add_movie_page():
         ls2.append(value)
 
     dictionary = dict(zip(ls, ls2))
-    path = join(dirname(__file__), "admin data.csv")
-    with open(path, 'a') as file:
-        writer_obj = writer(file)
-        writer_obj.writerow(ls2)
-        file.close()
+    path = join(dirname(__file__), "../resources/movie data.csv")
+    try:
+        with open(path, 'a') as file:
+            writer_obj = writer(file)
+            writer_obj.writerow(ls2)
+            file.close()
+        print("Movie added successfully\n")
+    except:
+        print("Task failed\n")
 
 
 if __name__ == "__main__":

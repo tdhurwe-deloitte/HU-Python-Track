@@ -1,6 +1,10 @@
 from pwinput import pwinput
-from check_admin import check_admin
-from add_movie_page import add_movie_page
+from Admin_functions.check_admin import check_admin
+from Admin_functions.add_movie_page import add_movie_page
+from Admin_functions.edit_movie_info import  edit_movie_info
+from Admin_functions.delete_movie import delete_movie
+from User_functions.select_movie import select_movie
+from User_functions.movie_details import movie_details
 import sys
 
 
@@ -30,34 +34,36 @@ class Register:
 
 class AdminAccount:
     def admin_panel(self):
-        print("\n", "*"*20, " Welcome Admin", "*"*20)
-        print("1. Add new movie info\n2. Edit movie info\n3. Delete movies\n4. Logout")
-        option = int(input("Enter : "))
-        if option == 1 or option == 2 or option == 3 or option == 4:
-            return option
-        else:
-            print("Please select valid option")
-            return self.admin_panel()
+        while True:
+            print("\n", "*"*20, " Welcome Admin", "*"*20)
+            print("1. Add new movie info\n2. Edit movie info\n3. Delete movies\n4. Logout")
+            option = int(input("Enter : "))
+            if option == 1 or option == 2 or option == 3 or option == 4:
+                return option
+            else:
+                print("Please select valid option")
 
     def add_new_movie(self):
-        return add_movie_page()
+        add_movie_page()
 
     def edit_movie_info(self):
-        print("edit new movies")  # call the function to edit movie info
+        edit_movie_info()
 
     def delete_movies(self):
-        print("Delete new movies")  # call the function to delete movies
+        delete_movie()
 
     def logout(self):
         print("logout")  # call the logout function or simply call the start page function
 
 
-class UserAccount(Login):
+class UserAccount:
     def select_movie(self):
-        pass  # function to select movie
+        movie_num = select_movie()
+        return movie_num
 
-    def show_movie_details(self):
-        pass  # call the function for movie details and options
+    def show_movie_details(self, movie_num):
+        option = movie_details(movie_num)
+        return option
 
     def book_tickets(self):
         pass
@@ -105,27 +111,27 @@ class Pages:
 
 
 if __name__ == "__main__":
-    start = Pages()
-    option = start.start_page()
-    if option == 1:
-        val = start.login_input()
-        if val:
-            admin = AdminAccount()
-            admin_option = admin.admin_panel()
-            # dictionary = {1: admin.add_new_movie(), 2: admin.edit_movie_info(), 3: admin.delete_movies()}
-            if admin_option == 1:
-                admin.add_new_movie()
-            elif admin_option == 2:
-                admin.edit_movie_info()
-            elif admin_option == 3:
-                admin.delete_movies()
-            else:
-                print("Error")
-        else:
-            print("Some error occurred")
+    while True:
+        start = Pages()
+        option = start.start_page()
+        if option == 1:
+            val = start.login_input()
+            while True:
+                if val:
+                    admin = AdminAccount()
+                    admin_option = admin.admin_panel()
+                    # dictionary = {1: admin.add_new_movie(), 2: admin.edit_movie_info(), 3: admin.delete_movies()}
+                    if admin_option == 1:
+                        admin.add_new_movie()
+                    elif admin_option == 2:
+                        admin.edit_movie_info()
+                    elif admin_option == 3:
+                        admin.delete_movies()
+                    else:
+                        break
 
-    elif option == 2:
-        print("register user")
+        elif option == 2:
+            print("register user")
 
 
 
