@@ -160,6 +160,8 @@ if __name__ == "__main__":
                             user.cancel_tickets(option, val)
                         if option == 3:
                             user.user_rating(option, val)
+                        else:
+                            break
 
         elif option == 2:
             start.user_registration()
