@@ -9,6 +9,7 @@ from User_functions.user_registration import user_registration
 from User_functions.user_check import user_check
 from User_functions.booking_tickets import booking_tickets
 from User_functions.cancling_tickets import cancel_tickets
+from User_functions.rating import user_rating
 import sys
 
 
@@ -76,8 +77,8 @@ class UserAccount:
     def cancel_tickets(self, movie_num, user):
         cancel_tickets(movie_num, user)
 
-    def user_rating(self):
-        pass
+    def user_rating(self, movie_num, user):
+        user_rating(movie_num, user)
 
     def logout(self):
         pass
@@ -155,11 +156,11 @@ if __name__ == "__main__":
                     else:
                         option = user.show_movie_details(choice)
                         if option == 1:
-                            user.book_tickets(option, val)
+                            user.book_tickets(choice, val)
                         if option == 2:
-                            user.cancel_tickets(option, val)
+                            user.cancel_tickets(choice, val)
                         if option == 3:
-                            user.user_rating(option, val)
+                            user.user_rating(choice, val)
                         else:
                             break
 
