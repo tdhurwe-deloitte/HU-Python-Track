@@ -17,9 +17,13 @@ def user_registration(name, username, email, phone_no, age, password):
                     writer_obj = writer(file)
                     writer_obj.writerow(ls)
                     file.close()
-                print("User added successfully")
-                return True
-    return False
+                print("User added successfully\n")
+            else:
+                print("phone no. already in use\n")
+        else:
+            print("Email is already in use\n")
+    else:
+        print("username already in use\n")
 
 
 if __name__ == "__main__":

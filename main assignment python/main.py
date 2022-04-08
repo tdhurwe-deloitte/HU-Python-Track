@@ -7,6 +7,8 @@ from User_functions.select_movie import select_movie
 from User_functions.movie_details import movie_details
 from User_functions.user_registration import user_registration
 from User_functions.user_check import user_check
+from User_functions.booking_tickets import booking_tickets
+from User_functions.cancling_tickets import cancel_tickets
 import sys
 
 
@@ -32,7 +34,7 @@ class Register:
         self.password = password
 
     def register_user(self):
-        return user_registration(self.name, self.username, self.email, self.phone_num, self.age, self.password)
+        user_registration(self.name, self.username, self.email, self.phone_num, self.age, self.password)
 
 
 class AdminAccount:
@@ -68,11 +70,11 @@ class UserAccount:
         option = movie_details(movie_num)
         return option
 
-    def book_tickets(self):
-        pass
+    def book_tickets(self, movie_num, user):
+        booking_tickets(movie_num, user)
 
-    def cancel_tickets(self):
-        pass
+    def cancel_tickets(self, movie_num, user):
+        cancel_tickets(movie_num, user)
 
     def user_rating(self):
         pass
@@ -108,7 +110,7 @@ class Pages:
             else:
                 login = Login(username, password)
                 if login.check_user():
-                    return 'user'
+                    return username
                 else:
                     print("\nInvalid login credentials")
 
@@ -123,12 +125,8 @@ class Pages:
             age = int(input("Age : "))
             password = pwinput("Password : ")
             register = Register(name, username, email, phone_num, age, password)
-            print(register.register_user())
-            if register.register_user():
-                return True
-            else:
-                print("Registration unsuccessful")
-                return False
+            register.register_user()
+            break
 
 
 if __name__ == "__main__":
@@ -149,15 +147,22 @@ if __name__ == "__main__":
                         admin.delete_movies()
                     else:
                         break
-                elif val == 'user':
-                    print("User login")
-                    break
+                elif val != 'admin':
+                    user = UserAccount()
+                    choice, total = user.select_movie()
+                    if choice == total:
+                        break
+                    else:
+                        option = user.show_movie_details(choice)
+                        if option == 1:
+                            user.book_tickets(option, val)
+                        if option == 2:
+                            user.cancel_tickets(option, val)
+                        if option == 3:
+                            user.user_rating(option, val)
 
         elif option == 2:
-            while True:
-                if start.user_registration():
-                    print("Registration successful")
-                    break
+            start.user_registration()
 
 
 

@@ -11,11 +11,13 @@ def select_movie():
         print(df.shape[0]+1, ". Logout")
         choice = int(input("Enter movie : "))
         if 0 < choice <= df.shape[0] + 1:
-            return choice - 1
+            choice = choice - 1
+            total = df.shape[0]
+            return choice, total
         else:
             print("Please Enter valid option")
 
 
 if __name__ == "__main__":
-    select_movie()
+    print(select_movie())
 

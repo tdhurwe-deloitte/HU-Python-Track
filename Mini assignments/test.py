@@ -2,11 +2,11 @@ from itertools import combinations
 
 
 class StringClass:
-    def __init__(self, string1, string2):
-        self.string1 = string1
-        self.string2 = string2
-        # self.string1 = "12314532"
-        # self.string2 = "45211834"
+    def __init__(self):
+        # self.string1 = string1
+        # self.string2 = string2
+        self.string1 = "12314532"
+        self.string2 = "45211834"
 
     def length_of_string(self):
         print(len(self.string1))
@@ -38,20 +38,20 @@ class SearchCommonElements(StringClass):
                 self.arr.append(char)
 
         for key, val in dictionary.items():
-            print(key + " ")
+            print(key, end=", ")
 
     def print_list(self):
-        print("third")
+        print("\nCommon elements ", end=" ")
         print(self.arr)
 
 
-str1 = "12314532"
-str2 = "45211834"
-obj = StringClass(str1, str2)
-obj.length_of_string()
-obj.string_to_list()
-obj1 = PairsPossible()
-obj1.possible_pairs()
-obj2 = SearchCommonElements()
-obj2.common_element()
-obj2.print_list()
+# str1 = "12314532"
+# str2 = "45211834"
+obj1 = StringClass()
+obj1.length_of_string()
+obj1.string_to_list()
+obj2 = PairsPossible()
+obj2.possible_pairs()
+obj3 = SearchCommonElements()
+obj3.common_element()
+obj3.print_list()
