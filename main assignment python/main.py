@@ -59,7 +59,7 @@ class AdminAccount:
         delete_movie()
 
     def logout(self):
-        print("logout")  # call the logout function or simply call the start page function
+        print("logout")  # call the logout function
 
 
 class UserAccount:
