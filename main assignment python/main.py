@@ -5,6 +5,8 @@ from Admin_functions.edit_movie_info import  edit_movie_info
 from Admin_functions.delete_movie import delete_movie
 from User_functions.select_movie import select_movie
 from User_functions.movie_details import movie_details
+from User_functions.user_registration import user_registration
+from User_functions.user_check import user_check
 import sys
 
 
@@ -17,19 +19,20 @@ class Login:
         return check_admin(self.user_name, self.password)
 
     def check_user(self):
-        pass
+        return user_check(self.user_name, self.password)
 
 
 class Register:
-    def __init__(self, name, email, phone_num, age, password) -> None:
+    def __init__(self, name, username, email, phone_num, age, password) -> None:
         self.name = name
+        self.username = username
         self.email = email
         self.phone_num = phone_num
         self.age = age
         self.password = password
 
     def register_user(self):
-        pass  # function to register details for the registered user in csv file
+        user_registration(self.name, self.username, self.email, self.phone_num, self.age, self.password)
 
 
 class AdminAccount:
@@ -99,13 +102,13 @@ class Pages:
             if username == "admin":
                 login = Login(username, password)
                 if login.check_admin():
-                    return True
+                    return 'admin'
                 else:
                     print("\nInvalid login credentials")
             else:
                 login = Login(username, password)
                 if login.check_user():
-                    return True
+                    return 'user'
                 else:
                     print("\nInvalid login credentials")
 
@@ -117,10 +120,9 @@ if __name__ == "__main__":
         if option == 1:
             val = start.login_input()
             while True:
-                if val:
+                if val == 'admin':
                     admin = AdminAccount()
                     admin_option = admin.admin_panel()
-                    # dictionary = {1: admin.add_new_movie(), 2: admin.edit_movie_info(), 3: admin.delete_movies()}
                     if admin_option == 1:
                         admin.add_new_movie()
                     elif admin_option == 2:
@@ -129,9 +131,13 @@ if __name__ == "__main__":
                         admin.delete_movies()
                     else:
                         break
+                elif val == 'user':
+                    print("User login")
+                    break
 
         elif option == 2:
-            print("register user")
+            print("register")
+
 
 
 

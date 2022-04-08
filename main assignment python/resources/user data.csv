@@ -1,1 +1,2 @@
-﻿Name,Email,Phone no.,Age,Password
+﻿Name,Username,Email,Phone no.,Age,Password
+random user1,user1,random.user1@gmail.com,9080706050,32,user1password
