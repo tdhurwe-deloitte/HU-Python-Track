@@ -14,8 +14,8 @@ def delete_movie():
     try:
         df.drop(choice, inplace=True)
         print("Data deleted successfully\n")
-    except:
-        print("Task failed")
+    except Exception as e:
+        print("Task failed", e)
 
 
 if __name__ == "__main__":

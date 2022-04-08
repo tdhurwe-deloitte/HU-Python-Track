@@ -32,7 +32,7 @@ class Register:
         self.password = password
 
     def register_user(self):
-        user_registration(self.name, self.username, self.email, self.phone_num, self.age, self.password)
+        return user_registration(self.name, self.username, self.email, self.phone_num, self.age, self.password)
 
 
 class AdminAccount:
@@ -112,6 +112,24 @@ class Pages:
                 else:
                     print("\nInvalid login credentials")
 
+    def user_registration(self):
+        while True:
+            """name, username, email, phone_num, age, password"""
+            print("\n", "*" * 20, " Create new account ", "*" * 20)
+            name = input("Name : ")
+            username = input("Username : ")
+            email = input("Email : ")
+            phone_num = int(input("Phone no. : "))
+            age = int(input("Age : "))
+            password = pwinput("Password : ")
+            register = Register(name, username, email, phone_num, age, password)
+            print(register.register_user())
+            if register.register_user():
+                return True
+            else:
+                print("Registration unsuccessful")
+                return False
+
 
 if __name__ == "__main__":
     while True:
@@ -136,7 +154,12 @@ if __name__ == "__main__":
                     break
 
         elif option == 2:
-            print("register")
+            while True:
+                if start.user_registration():
+                    print("Registration successful")
+                    break
+
+
 
 
 

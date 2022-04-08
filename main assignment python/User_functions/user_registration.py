@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def user_registration(name, username, email, phone_no, age, password):
-    path = join(dirname("__file__"), "../resources/user data.csv")
+    path = join(dirname(__file__), "../resources/user data.csv")
     data = pd.read_csv(path)
     user_name = data['Username'].tolist()
     user_email = data['Email'].tolist()
@@ -13,21 +13,13 @@ def user_registration(name, username, email, phone_no, age, password):
         if email not in user_email:
             if phone_no not in user_phone_no:
                 ls = [name, username, email, phone_no, age, password]
-                try:
-                    with open(path, 'a') as file:
-                        writer_obj = writer(file)
-                        writer_obj.writerow(ls)
-                        file.close()
-                    print("User added successfully\n")
-
-                except Exception as e:
-                    print("Error : ", e)
-            else:
-                print("Phone no. is already in use\n")
-        else:
-            print("Email is already in use\n")
-    else:
-        print("Username is already in use")
+                with open(path, 'a') as file:
+                    writer_obj = writer(file)
+                    writer_obj.writerow(ls)
+                    file.close()
+                print("User added successfully")
+                return True
+    return False
 
 
 if __name__ == "__main__":

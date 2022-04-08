@@ -4,7 +4,7 @@ from os.path import join, dirname
 
 def user_check(username, password):
     try:
-        path = join(dirname("__file__"), "../resources/user data.csv")
+        path = join(dirname(__file__), "../resources/user data.csv")
         data = pd.read_csv(path)
         user_name = data['Username'].tolist()
         passwd = data['Password'].tolist()

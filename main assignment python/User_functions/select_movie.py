@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 
 def select_movie():
-    path = join(dirname("__file__"), "../resources/movie data.csv")
+    path = join(dirname(__file__), "../resources/movie data.csv")
     df = pd.read_csv(path)
     while True:
         for i in range(df.shape[0]):
